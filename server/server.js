@@ -5,20 +5,19 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-dotenv.config({ path: path.resolve(__dirname, ".env") });
-
 import authRoutes from "./Routes/authRoutes.js";
 import repoRoutes from "./Routes/repoRoutes.js";
 import { initializeFirebaseAdmin } from "./Config/githubOAuth.js";
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 initializeFirebaseAdmin();
 
 const app = express();
 
-// Session middleware
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "your-secret-key",
@@ -28,7 +27,7 @@ app.use(
   })
 );
 
-// CORS
+
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
@@ -39,24 +38,25 @@ app.use(
   })
 );
 
-// Body parsing
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Request logging
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`);
-  if (req.body && Object.keys(req.body).length > 0) {
-    console.log("Body:", req.body);
-  }
-  next();
-});
 
-// Routes
+if (process.env.NODE_ENV === "development") {
+  app.use((req, res, next) => {
+    console.info(`${req.method} ${req.path}`);
+    if (req.body && Object.keys(req.body).length > 0) {
+      console.info("Body:", req.body);
+    }
+    next();
+  });
+}
+
+
 app.use("/auth", authRoutes);
 app.use("/api", repoRoutes);
 
-// 404 handler
 app.use((req, res) => {
   res.status(404).json({
     status: "error",
@@ -64,9 +64,9 @@ app.use((req, res) => {
   });
 });
 
-// Error handler
+
 app.use((err, req, res, next) => {
-  console.error("Error occurred:", {
+  console.error("Internal Server Error:", {
     message: err.message,
     stack: err.stack,
     url: req.url,
@@ -75,9 +75,9 @@ app.use((err, req, res, next) => {
     timestamp: new Date().toISOString(),
   });
 
-  res.status(500).json({
+  res.status(err.status || 500).json({
     status: "error",
-    message: "Internal Server Error",
+    message: err.customMessage || "Internal Server Error",
     ...(process.env.NODE_ENV === "development" && {
       error: err.message,
       stack: err.stack,

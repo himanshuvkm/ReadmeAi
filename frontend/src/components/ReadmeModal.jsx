@@ -1,23 +1,23 @@
-// components/ReadmeModal.jsx
+
 import React, { useState, useEffect } from 'react';
 import MarkdownPreview from './MarkdownPreview';
 import { X, Copy, Download, Eye, FileText, Check, Loader2, AlertCircle } from 'lucide-react';
 
-// Accept extra props for Home modal compatibility
+
 const ReadmeModal = ({ 
   selectedRepo, 
   readmeContent, 
   generating, 
   onClose, 
-  show, // for Home page
-  error, // for Home page
+  show, 
+  error, 
   onCopy, 
   onDownload, 
   copySuccess, 
   setCopySuccess 
 }) => {
   const [internalCopySuccess, setInternalCopySuccess] = useState(false);
-  const [viewMode, setViewMode] = useState('raw'); // 'raw' or 'preview'
+  const [viewMode, setViewMode] = useState('raw'); 
   const copyState = typeof copySuccess === 'boolean' ? copySuccess : internalCopySuccess;
   const setCopyState = setCopySuccess || setInternalCopySuccess;
 
@@ -60,7 +60,7 @@ const ReadmeModal = ({
     URL.revokeObjectURL(url);
   };
 
-  // Only show modal if selectedRepo or show is true
+ 
   if (!selectedRepo && !show) return null;
 
   return (
@@ -114,7 +114,7 @@ const ReadmeModal = ({
           </button>
         </div>
 
-        {/* Mobile View Mode Toggle */}
+       
         {!generating && readmeContent && (
           <div className="flex sm:hidden bg-slate-800/50 rounded-xl p-1 border border-slate-700/50 mx-4 mb-4">
             <button
@@ -160,7 +160,7 @@ const ReadmeModal = ({
           </div>
         ) : (
           <>
-            {/* Content - Scrollable */}
+          
             <div className="flex-1 p-4 sm:p-6 overflow-hidden">
               <div className="h-full overflow-y-auto overflow-x-auto rounded-xl border border-slate-700/50" 
                    style={{ background: viewMode === 'preview' ? '#0d1117' : 'rgba(15, 23, 42, 0.8)' }}>

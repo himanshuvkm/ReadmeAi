@@ -9,7 +9,7 @@ const Footer = () => {
         {/* Social Icons */}
         <div className="flex justify-center gap-6 mb-4">
           <a
-            href="https://github.com/xAI"
+            href="https://github.com/himanshuvkm"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-400 hover:text-white transition-colors duration-200"
@@ -18,7 +18,7 @@ const Footer = () => {
             <Github className="w-6 h-6" />
           </a>
           <a
-            href="https://twitter.com/xAI"
+            href="https://x.com/Himanshu_10147"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-400 hover:text-white transition-colors duration-200"
@@ -26,8 +26,8 @@ const Footer = () => {
           >
             <Twitter className="w-6 h-6" />
           </a>
-          <a
-            href="https://linkedin.com/company/xAI"
+          <a 
+          href="https://www.linkedin.com/in/himanshu-vishwakarma-2275a5354"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-400 hover:text-white transition-colors duration-200"
@@ -36,7 +36,7 @@ const Footer = () => {
             <Linkedin className="w-6 h-6" />
           </a>
           <a
-            href="mailto:support@x.ai"
+            href="mailto:himanshuvkm252@gmail.com"
             className="text-slate-400 hover:text-white transition-colors duration-200"
             aria-label="Email Support"
           >

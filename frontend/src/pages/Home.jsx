@@ -59,8 +59,8 @@ function Home() {
   setShowModal(true);
 
   try {
-    // ✅ Call backend API with cookies
-    const response = await fetch(`${API_BASE_URL}/api/repos/generate-readme`, {
+  
+    const response = await fetch(`${API_BASE_URL}/api/generate-readme`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ owner, repoName }),
@@ -74,8 +74,8 @@ function Home() {
       }
     }
 
-    // ✅ Fallback: Fetch directly from GitHub API
-    const ghRes = await fetch(`https://api.github.com/repos/${owner}/${repoName}/readme`);
+   
+    const ghRes = await fetch(`https://api.github.com/repos/${owner}/${repoName}`);
     console.log(`Fetching languages from: https://api.github.com/repos/${owner}/${repoName}/languages`);
     
     if (!ghRes.ok) throw new Error("README not found on GitHub or rate limit exceeded");
@@ -171,9 +171,9 @@ function Home() {
                   <span>Generating...</span>
                 </>
               ) : (
-                <>
-                  <Zap className="mr-3 w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-                  <span>Generate README</span>
+                < >
+                  <Zap className="mr-3 w-5 h-5 group-hover:scale-110 transition-transform duration-200 cursor-pointer" />
+                  <span className="cursor-pointer">Generate README</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                 </>
               )}
@@ -203,9 +203,9 @@ function Home() {
             className="w-full sm:w-auto bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 text-white font-semibold py-3 px-8 rounded-xl flex items-center justify-center transition-all duration-300 group border border-slate-600/50 hover:border-slate-500/50 shadow-lg hover:shadow-xl relative overflow-hidden mx-auto disabled:opacity-60"
             aria-label="Connect GitHub Account"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-green-600/0 via-green-600/0 to-green-600/0 group-hover:from-green-600/10 group-hover:via-green-600/5 group-hover:to-green-600/10 transition-all duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-green-600/0 via-green-600/0 to-green-600/0 group-hover:from-green-600/10 group-hover:via-green-600/5 group-hover:to-green-600/10 transition-all duration-300 cursor-pointer"></div>
             <Github className="mr-3 w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-            <span className="relative z-10">Go to login Page</span>
+            <span className="relative z-10 cursor-pointer">Go to login Page</span>
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
           </button>
         </div>

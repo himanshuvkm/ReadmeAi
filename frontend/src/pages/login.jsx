@@ -1,4 +1,4 @@
-// pages/Login.jsx
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Github, Shield, Lock, User, GitBranch, Eye, ArrowRight, CheckCircle } from "lucide-react";
@@ -16,7 +16,7 @@ function Login() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col items-center justify-center text-white relative px-4 overflow-hidden">
-      {/* Animated background elements */}
+     
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -63,34 +63,23 @@ function Login() {
             onClick={loginWithGitHub}
             className="w-full bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 text-white font-semibold py-4 px-6 rounded-xl flex items-center justify-center transition-all duration-300 group border border-slate-600/50 hover:border-slate-500/50 shadow-lg hover:shadow-xl mb-6 relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 via-purple-600/0 to-purple-600/0 group-hover:from-purple-600/10 group-hover:via-purple-600/5 group-hover:to-purple-600/10 transition-all duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 via-purple-600/0 to-purple-600/0 group-hover:from-purple-600/10 group-hover:via-purple-600/5 group-hover:to-purple-600/10 transition-all duration-300 cursor-pointer"></div>
             <Github className="mr-3 w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
-            <span className="relative z-10">Authorize with GitHub</span>
+            <span className="relative z-10 cursor-pointer">Authorize with GitHub</span>
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
           </button>
         
         <p className="text-gray-400">
           Only want to access public repositories?{" "}
           <button 
-            onClick={handlePublicAccess}
             className="text-blue-400 hover:text-blue-300 underline cursor-pointer"
+            onClick={handlePublicAccess}
           >
             Click here
           </button>{" "}
           to proceed without authorization.
         </p>
       </main>
-
-      {/* Footer */}
-      <footer className="absolute bottom-2 sm:bottom-4 text-gray-500 text-xs sm:text-sm text-center w-full px-4">
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-1 sm:mb-2">
-          <a href="#" className="hover:text-gray-400">About Us</a>
-          <a href="#" className="hover:text-gray-400">Contact</a>
-          <a href="#" className="hover:text-gray-400">Terms of Service</a>
-          <a href="#" className="hover:text-gray-400">Privacy Policy</a>
-        </div>
-        <p>&copy; 2025 README Generator</p>
-      </footer>
     </div>
   );
 }

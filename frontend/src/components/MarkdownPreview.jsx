@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Copy, Check } from 'lucide-react';
-import { useState } from 'react';
-import 'github-markdown-css/github-markdown-dark.css'; // GitHub dark theme
+import 'github-markdown-css/github-markdown-dark.css';
 
-// Component to render markdown content with GitHub-like style
 const MarkdownPreview = ({ content }) => {
   const [copiedCode, setCopiedCode] = useState(null);
 
@@ -17,7 +15,7 @@ const MarkdownPreview = ({ content }) => {
       setCopiedCode(index);
       setTimeout(() => setCopiedCode(null), 2000);
     } catch (error) {
-      console.error('Failed to copy code:', error);
+      console.error('Failed to copy code to clipboard:', error);
     }
   };
 
@@ -67,7 +65,6 @@ const MarkdownPreview = ({ content }) => {
       );
     },
     
-    // Enhanced blockquote styling
     blockquote({ children, ...props }) {
       return (
         <blockquote 
@@ -79,7 +76,6 @@ const MarkdownPreview = ({ content }) => {
       );
     },
     
-    // Enhanced table styling
     table({ children, ...props }) {
       return (
         <div className="overflow-x-auto my-6">
@@ -106,7 +102,6 @@ const MarkdownPreview = ({ content }) => {
       );
     },
     
-    // Enhanced link styling
     a({ children, href, ...props }) {
       return (
         <a 
@@ -121,7 +116,6 @@ const MarkdownPreview = ({ content }) => {
       );
     },
     
-    // Enhanced heading styling
     h1({ children, ...props }) {
       return (
         <h1 className="text-3xl sm:text-4xl font-bold text-white mb-6 pb-3 border-b border-slate-700" {...props}>
@@ -154,7 +148,6 @@ const MarkdownPreview = ({ content }) => {
       );
     },
     
-    // Enhanced list styling
     ul({ children, ...props }) {
       return (
         <ul className="list-disc list-inside space-y-2 text-slate-300 my-4 pl-4" {...props}>
@@ -179,7 +172,6 @@ const MarkdownPreview = ({ content }) => {
       );
     },
     
-    // Enhanced paragraph styling
     p({ children, ...props }) {
       return (
         <p className="text-slate-300 leading-relaxed mb-4" {...props}>
@@ -188,7 +180,6 @@ const MarkdownPreview = ({ content }) => {
       );
     },
     
-    // Enhanced image styling
     img({ src, alt, ...props }) {
       return (
         <img 
@@ -200,7 +191,6 @@ const MarkdownPreview = ({ content }) => {
       );
     },
     
-    // Enhanced horizontal rule
     hr({ ...props }) {
       return (
         <hr className="border-slate-700 my-8" {...props} />
