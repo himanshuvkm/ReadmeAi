@@ -36,7 +36,7 @@ const provider = new GithubAuthProvider();
 provider.addScope("repo");
 provider.addScope("read:org");
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://readmegen-vert.vercel.app";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

@@ -26,7 +26,7 @@ function Dashboard() {
   const [error, setError] = useState(null);
 
   const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
+    import.meta.env.VITE_API_BASE_URL || "https://readmegen-vert.vercel.app";
 
 useEffect(() => {
   const fetchRepos = async () => {
