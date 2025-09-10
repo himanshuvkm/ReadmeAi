@@ -3,11 +3,23 @@
 
 **A collaborative README generator powered by GitHub OAuth and Gemini API.**
 
-[![Top Languages](https://img.shields.io/github/languages/top/himanshuvkm/ReadmeAi?style=for-the-badge)](https://github.com/himanshuvkm/ReadmeAi)  
-[![License](https://img.shields.io/github/license/himanshuvkm/ReadmeAi?style=for-the-badge)](LICENSE)  
-[![Stars](https://img.shields.io/github/stars/himanshuvkm/ReadmeAi?style=for-the-badge)](https://github.com/himanshuvkm/ReadmeAi/stargazers)  
-[![Forks](https://img.shields.io/github/forks/himanshuvkm/ReadmeAi?style=for-the-badge)](https://github.com/himanshuvkm/ReadmeAi/network)  
-[![Issues](https://img.shields.io/github/issues/himanshuvkm/ReadmeAi?style=for-the-badge)](https://github.com/himanshuvkm/ReadmeAi/issues)  
+<p align="center">
+  <a href="https://github.com/himanshuvkm/ReadmeAi">
+    <img src="https://img.shields.io/github/languages/top/himanshuvkm/ReadmeAi?style=for-the-badge" alt="Top Languages" />
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/github/license/himanshuvkm/ReadmeAi?style=for-the-badge" alt="License" />
+  </a>
+  <a href="https://github.com/himanshuvkm/ReadmeAi/stargazers">
+    <img src="https://img.shields.io/github/stars/himanshuvkm/ReadmeAi?style=for-the-badge" alt="Stars" />
+  </a>
+  <a href="https://github.com/himanshuvkm/ReadmeAi/network">
+    <img src="https://img.shields.io/github/forks/himanshuvkm/ReadmeAi?style=for-the-badge" alt="Forks" />
+  </a>
+  <a href="https://github.com/himanshuvkm/ReadmeAi/issues">
+    <img src="https://img.shields.io/github/issues/himanshuvkm/ReadmeAi?style=for-the-badge" alt="Issues" />
+  </a>
+</p>
 
 ---
 
