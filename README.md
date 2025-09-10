@@ -153,10 +153,10 @@ Unit and integration testing is under development. Contributions are welcome.
 
 ## 🚢 Deployment
 
-Deployment instructions will be added soon.  
-For now, run locally or deploy to platforms like Vercel or Heroku.
+[Deployment link is added .  
 
----
+
+---](https://readmegen-pz8j.vercel.app/)
 
 ## 🤝 Contributing
 
