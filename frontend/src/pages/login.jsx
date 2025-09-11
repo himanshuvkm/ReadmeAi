@@ -1,7 +1,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Github, Shield, Lock, User, GitBranch, Eye, ArrowRight, CheckCircle } from "lucide-react";
+import { Github, ArrowRight, CheckCircle } from "lucide-react";
 import Header from "../components/header";
 import { useAuth } from "../context/AuthContext";
 

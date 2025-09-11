@@ -14,11 +14,7 @@ import toast from "react-hot-toast";
 
 const AuthContext = createContext();
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used within an AuthProvider");
-  return context;
-};
+export const useAuth = () => useContext(AuthContext);
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -36,7 +32,7 @@ const provider = new GithubAuthProvider();
 provider.addScope("repo");
 provider.addScope("read:org");
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://readmegen-vert.vercel.app";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

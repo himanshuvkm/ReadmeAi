@@ -120,16 +120,7 @@ Output should be **valid Markdown**, ready to copy-paste into a GitHub repo.
     }
 
     return text;
-  } catch (error) {
-    console.error("Detailed Gemini API Error:", {
-      message: error.message,
-      stack: error.stack,
-      code: error.code,
-      details: error.details,
-    });
-    if (error.code === 429) {
-      throw new Error("Gemini API rate limit exceeded. Please try again later.");
-    }
-    throw new Error(`Failed to generate README: ${error.message || "Unknown Gemini API error"}`);
+  } catch (err) {
+    throw new Error(`Gemini generation failed: ${err.message}`);
   }
 };

@@ -20,10 +20,7 @@ export class GitHubService {
         headers: this.headers,
         params: { sort: "updated", per_page: perPage, visibility: "all" },
       });
-      const remaining = response.headers["x-ratelimit-remaining"];
-      if (remaining && parseInt(remaining) < 10) {
-        console.warn("GitHub API rate limit low:", remaining);
-      }
+     
       return response.data.map((repo) => ({
         id: repo.id,
         name: repo.name,
@@ -36,14 +33,9 @@ export class GitHubService {
         html_url: repo.html_url,
         default_branch: repo.default_branch,
       }));
-    } catch (error) {
-      const status = error.response?.status;
-      const msg = error.response?.data?.message || error.message;
-      if (status === 403 && msg.includes("rate limit")) {
-        throw new Error("GitHub API rate limit exceeded. Please try again later.");
-      }
-      throw new Error(`Failed to fetch repositories: ${status} - ${msg}`);
-    }
+    } catch (err) {
+    throw new Error(`Github request failed: ${err.message}`);
+  }
   }
 
   async getRepoDetails(owner, repo) {
@@ -52,19 +44,11 @@ export class GitHubService {
       const response = await axios.get(`${this.baseURL}/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`, {
         headers: this.headers,
       });
-      const remaining = response.headers["x-ratelimit-remaining"];
-      if (remaining && parseInt(remaining) < 10) {
-        console.warn("GitHub API rate limit low:", remaining);
-      }
+      
       return response.data;
-    } catch (error) {
-      const status = error.response?.status;
-      const msg = error.response?.data?.message || error.message;
-      if (status === 403 && msg.includes("rate limit")) {
-        throw new Error("GitHub API rate limit exceeded. Please try again later.");
-      }
-      throw new Error(`Failed to fetch repository details: ${status} - ${msg}`);
-    }
+    } catch (err) {
+    throw new Error(`Github request failed: ${err.message}`);
+  }
   }
 
   async getRepoLanguages(owner, repo) {
@@ -73,19 +57,11 @@ export class GitHubService {
       const response = await axios.get(`${this.baseURL}/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/languages`, {
         headers: this.headers,
       });
-      const remaining = response.headers["x-ratelimit-remaining"];
-      if (remaining && parseInt(remaining) < 10) {
-        console.warn("GitHub API rate limit low:", remaining);
-      }
+      
       return response.data;
-    } catch (error) {
-      const status = error.response?.status;
-      const msg = error.response?.data?.message || error.message;
-      if (status === 403 && msg.includes("rate limit")) {
-        throw new Error("GitHub API rate limit exceeded. Please try again later.");
-      }
-      throw new Error(`Failed to fetch repository languages: ${status} - ${msg}`);
-    }
+    } catch (err) {
+    throw new Error(`Github request failed: ${err.message}`);
+  }
   }
 
   async getRepoFileTree(owner, repo, branch = null) {
@@ -96,19 +72,10 @@ export class GitHubService {
       const response = await axios.get(`${this.baseURL}/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/git/trees/${encodeURIComponent(targetBranch)}?recursive=1`, {
         headers: this.headers,
       });
-      const remaining = response.headers["x-ratelimit-remaining"];
-      if (remaining && parseInt(remaining) < 10) {
-        console.warn("GitHub API rate limit low:", remaining);
-      }
       return response.data;
-    } catch (error) {
-      const status = error.response?.status;
-      const msg = error.response?.data?.message || error.message;
-      if (status === 403 && msg.includes("rate limit")) {
-        throw new Error("GitHub API rate limit exceeded. Please try again later.");
-      }
-      throw new Error(`Failed to fetch repository file tree: ${status} - ${msg}`);
-    }
+    } catch (err) {
+    throw new Error(`Github request failed: ${err.message}`);
+  }
   }
 
   async getFileContent(owner, repo, path) {
@@ -117,22 +84,10 @@ export class GitHubService {
       const response = await axios.get(`${this.baseURL}/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${encodeURIComponent(path)}`, {
         headers: this.headers,
       });
-      const remaining = response.headers["x-ratelimit-remaining"];
-      if (remaining && parseInt(remaining) < 10) {
-        console.warn("GitHub API rate limit low:", remaining);
-      }
       const content = response.data?.content ? Buffer.from(response.data.content, "base64").toString("utf8") : "";
       return { data: content, status: "success", sha: response.data?.sha || null };
-    } catch (error) {
-      if (error.response?.status === 404) {
-        return { data: "", status: "not_found" };
-      }
-      const status = error.response?.status;
-      const msg = error.response?.data?.message || error.message;
-      if (status === 403 && msg.includes("rate limit")) {
-        throw new Error("GitHub API rate limit exceeded. Please try again later.");
-      }
-      throw new Error(`Failed to fetch file content: ${status} - ${msg}`);
-    }
+    } catch (err) {
+    throw new Error(`Github request failed: ${err.message}`);
+  }
   }
 }

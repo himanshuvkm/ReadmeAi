@@ -23,7 +23,6 @@ function Home() {
   const [selectedRepoName, setSelectedRepoName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [copySuccess, setCopySuccess] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://readmegen-vert.vercel.app";
@@ -99,30 +98,6 @@ function Home() {
     setLoading(false);
   }
 };
-
-  const copyToClipboard = async () => {
-    if (!readmeContent) return;
-    try {
-      await navigator.clipboard.writeText(readmeContent);
-      setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 2000);
-    } catch (error) {
-      console.error("Failed to copy to clipboard:", error);
-    }
-  };
-
-  const downloadReadme = () => {
-    if (!readmeContent) return;
-    const blob = new Blob([readmeContent], { type: "text/markdown" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `${selectedRepoName.split("/")[1]}-README.md`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  };
 
   return (
     <div
@@ -242,10 +217,7 @@ function Home() {
             setReadmeContent("");
             setError(null);
           }}
-          onCopy={copyToClipboard}
-          onDownload={downloadReadme}
-          copySuccess={copySuccess}
-          setCopySuccess={setCopySuccess}
+          
         />
       )}
 

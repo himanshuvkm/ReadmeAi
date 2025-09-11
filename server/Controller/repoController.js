@@ -9,7 +9,6 @@ const getGitHubService = (req) => {
       req.headers["x-github-token"] ||
       req.body?.githubToken ||
       req.query?.githubToken;
-    console.log("Using GitHub token from x-github-token header:", token);
   } else if (req.session?.user?.github?.token) {
     token = req.session.user.github.token;
     console.log("Using GitHub token from session.");
@@ -35,18 +34,14 @@ export const getRepos = async (req, res) => {
     const repos = await service.getUserRepos();
     console.log("getRepos - Fetched repositories successfully.");
     res.json(repos);
-  } catch (error) {
-    console.error("getRepos error:", error);
-    if (error.message.includes("401")) {
-      return res
-        .status(401)
-        .json({ message: "Invalid or expired GitHub token" });
-    }
-    res
-      .status(500)
-      .json({ message: `Failed to fetch repositories: ${error.message}` });
+  }catch (err) {
+    if (err.message.includes("401"))
+      return res.status(401).json({ message: "Invalid GitHub token" });
+    if (err.message.includes("rate limit"))
+      return res.status(429).json({ message: "GitHub API rate limit exceeded" });
+    res.status(500).json({ message: `Failed to generate README: ${err.message}` });
   }
-};
+}
 
 export const generateRepoReadme = async (req, res) => {
   try {
@@ -90,20 +85,14 @@ export const generateRepoReadme = async (req, res) => {
       .trim();
 
     res.json({ readme: readmeContent });
-  } catch (error) {
-    console.error("generateRepoReadme error:", error);
-    if (error.message.includes("401")) {
+  }catch (err) {
+    if (err.message.includes("401"))
       return res.status(401).json({ message: "Invalid GitHub token" });
-    }
-    if (error.message.includes("rate limit")) {
-      return res
-        .status(429)
-        .json({ message: "GitHub API rate limit exceeded" });
-    }
-    res
-      .status(500)
-      .json({ message: `Failed to generate README: ${error.message}` });
+    if (err.message.includes("rate limit"))
+      return res.status(429).json({ message: "GitHub API rate limit exceeded" });
+    res.status(500).json({ message: `Failed to generate README: ${err.message}` });
   }
+
 };
 
 export const generatePublicReadme = async (req, res) => {
