@@ -111,7 +111,7 @@ Generate the README now using the above details.
 Output should be **valid Markdown**, ready to copy-paste into a GitHub repo.
 `;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
     const result = await model.generateContent(prompt);
     const text = await result.response.text();
 
