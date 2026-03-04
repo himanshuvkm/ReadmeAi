@@ -66,7 +66,7 @@ Return valid Markdown only.
 `;
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "Gemini 2.5 Flash",
       generationConfig: {
         maxOutputTokens: 1200,
         temperature: 0.7,
