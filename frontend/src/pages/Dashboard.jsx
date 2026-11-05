@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContextValue";
 import ReadmeModal from "../components/ReadmeModal";
 import {
   LogOut,
@@ -66,7 +66,7 @@ useEffect(() => {
   };
 
   if (token && githubToken) fetchRepos(); 
-}, [token, githubToken, logout, navigate]);
+}, [token, githubToken, logout, navigate, API_BASE_URL]);
 
  const generateReadme = async (repo) => {
   setGenerating(true);

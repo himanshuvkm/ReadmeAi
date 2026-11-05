@@ -1,7 +1,7 @@
 
 # 🚀 ReadmeAi 🎯
 
-**A collaborative README generator powered by GitHub OAuth and Gemini API.**
+**Generate a useful first draft of your project documentation from a GitHub repository.**
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/himanshuvkm/ReadmeAi?style=for-the-badge" alt="Top Languages" />
@@ -36,7 +36,7 @@ ReadmeAi simplifies README creation by providing an intuitive interface combined
 
 - 📄 **Automated README Generation** — Generate structured, polished READMEs in a few clicks.
 - 🔐 **GitHub OAuth Integration** — Secure login and access via GitHub authentication.
-- 💎 **Gemini Markdown Rendering** — Enhanced markdown formatting with Gemini.
+- 💎 **Gemini README Generation** — Drafts documentation from repository metadata and its file tree.
 - 🎨 **Customizable Templates** — Easily tailor the README layout to match your project style.
 - 🗂️ **Organized Output** — Includes features, installation, usage, and contribution sections by default.
 - 🤝 **Team Collaboration** — Share and collaboratively build documentation with your team.
@@ -59,7 +59,7 @@ ReadmeAi simplifies README creation by providing an intuitive interface combined
 
 ### ✅ Prerequisites
 
-- Node.js (v16+)
+- Node.js 20.19+ or 22.12+
 - npm or yarn
 
 ### 🚧 Installation
@@ -79,11 +79,7 @@ npm install
 
 ### ⚙️ Configuration
 
-Create .env files in frontend/ and server/ using .env.example as a reference.  
-Ensure you provide:
-- GITHUB_CLIENT_ID
-- GITHUB_CLIENT_SECRET
-- PORT (for server and frontend dev server)
+Configure the backend and frontend environment variables for your Firebase and GitHub OAuth setup. The backend also needs `GEMINI_API_KEY`. Optionally set `GEMINI_MODEL` to override the default `gemini-3.8-flash` model.
 
 ### ▶️ Run Locally
 
@@ -141,6 +137,8 @@ ReadmeAi/
 |-----------------------|----------------------------------|
 | GITHUB_CLIENT_ID      | OAuth App Client ID             |
 | GITHUB_CLIENT_SECRET  | OAuth App Secret               |
+| GEMINI_API_KEY        | Gemini API key for README generation |
+| GEMINI_MODEL          | Optional Gemini model override (defaults to `gemini-3.8-flash`) |
 | PORT                  | Server and Frontend Port        |
 
 ---

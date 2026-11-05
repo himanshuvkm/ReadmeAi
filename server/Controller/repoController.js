@@ -72,9 +72,14 @@ export const generateRepoReadme = async (req, res) => {
     const repoData = {
       repoName,
       owner,
+      url: repoDetails.html_url,
+      defaultBranch: repoDetails.default_branch,
+      license: repoDetails.license?.spdx_id || repoDetails.license?.name || null,
+      stars: repoDetails.stargazers_count,
+      forks: repoDetails.forks_count,
       description: repoDetails.description || "No description",
       languages: Object.keys(languages).join(", ") || "Not specified",
-      fileStructure: fileList,
+      fileStructure: fileList.split("\n").filter(Boolean),
     };
 
     let readmeContent = await generateReadme(repoData);
@@ -129,9 +134,14 @@ export const generatePublicReadme = async (req, res) => {
     const repoData = {
       repoName,
       owner,
+      url: repoDetails.html_url,
+      defaultBranch: repoDetails.default_branch,
+      license: repoDetails.license?.spdx_id || repoDetails.license?.name || null,
+      stars: repoDetails.stargazers_count,
+      forks: repoDetails.forks_count,
       description: repoDetails.description || "No description",
       languages: Object.keys(languages).join(", ") || "Not specified",
-      fileStructure: fileList,
+      fileStructure: fileList.split("\n").filter(Boolean),
     };
 
     let readmeContent = await generateReadme(repoData);

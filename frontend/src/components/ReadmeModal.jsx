@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import MarkdownPreview from './MarkdownPreview';
 import { X, Copy, Download, Eye, FileText, Check, Loader2, AlertCircle } from 'lucide-react';
 
@@ -156,6 +156,14 @@ const ReadmeModal = ({
                   This process typically takes 10-30 seconds depending on repository complexity
                 </p>
               </div>
+            </div>
+          </div>
+        ) : error ? (
+          <div className="flex flex-1 items-center justify-center p-6">
+            <div className="max-w-lg rounded-2xl border border-red-500/20 bg-red-500/10 p-6 text-center">
+              <AlertCircle className="mx-auto mb-3 h-8 w-8 text-red-400" />
+              <h4 className="mb-2 text-lg font-semibold text-white">Check the repository URL</h4>
+              <p className="text-sm leading-relaxed text-slate-300">{error}</p>
             </div>
           </div>
         ) : (

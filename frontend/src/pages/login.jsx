@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Github, ArrowRight, CheckCircle } from "lucide-react";
 import Header from "../components/header";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContextValue";
 
 function Login() {
   const navigate = useNavigate();

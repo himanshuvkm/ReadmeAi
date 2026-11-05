@@ -21,6 +21,7 @@ const MarkdownPreview = ({ content }) => {
 
   const components = {
     code({ node, inline, className, children, ...props }) {
+      void node;
       const match = /language-(\w+)/.exec(className || '');
       const codeString = String(children).replace(/\n$/, '');
       const codeIndex = `${match?.[1] || 'text'}-${codeString.slice(0, 20)}`;
